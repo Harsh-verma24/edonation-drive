@@ -55,31 +55,28 @@ const Home = () => {
           />
         </div>
       </div>
-      <div className="mt-16 text-center max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold text-green-800">What Can You Donate?</h2>
-        <p className="mt-4 text-gray-700 text-lg">ReLife accepts a wide range of items to help those in need and promote sustainability. Here are some examples:</p>
-        <ul className="mt-6 text-gray-600 text-lg list-disc list-inside space-y-2">
-          <li>Clothing and footwear</li>
-          <li>Books and educational materials</li>
-          <li>Electronics and gadgets</li>
-          <li>Furniture and home decor</li>
-          <li>Non-perishable food items</li>
-          <li>Toys and games</li>
-        </ul>
-        <p className="mt-6 text-gray-700 text-lg">Your donations can make a significant impact on someone's life while reducing waste and protecting the environment.</p>
-      </div>
-      <footer className="text-gray-800 py-8 mt-16">
+      <footer className="bg-gray-800 text-white py-8 mt-16">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex flex-wrap justify-between">
-            <div className="w-full md:w-1/2 mb-6 md:mb-0">
+            <div className="w-full md:w-1/3 mb-6 md:mb-0">
               <h3 className="text-xl font-bold">About ReLife</h3>
-              <p className="mt-4 text-gray-600 text-sm">ReLife is a donation-driven platform designed to promote sustainability and community support. By connecting donors with those in need, we aim to reduce waste and foster a culture of sharing and generosity.</p>
-              <p className="mt-4 text-gray-600 text-sm">Our mission is to make the world a better place, one donation at a time.</p>
+              <p className="mt-4 text-gray-400 text-sm">ReLife is a donation-driven platform designed to promote sustainability and community support. By connecting donors with those in need, we aim to reduce waste and foster a culture of sharing and generosity.</p>
+              <p className="mt-4 text-gray-400 text-sm">Our mission is to make the world a better place, one donation at a time.</p>
             </div>
-            <div className="w-full md:w-1/2">
-              <h3 className="text-xl font-bold">Our Vision</h3>
-              <p className="mt-4 text-gray-600 text-sm">We envision a world where resources are shared responsibly, and everyone has access to the essentials they need. Through ReLife, we strive to create a sustainable future by encouraging mindful consumption and generosity.</p>
-              <p className="mt-4 text-gray-600 text-sm">Join us in building a community that cares for the planet and its people.</p>
+            <div className="w-full md:w-1/3 mb-6 md:mb-0">
+              <h3 className="text-xl font-bold">Quick Links</h3>
+              <ul className="mt-4 text-gray-400 text-sm space-y-2">
+                <li><a href="/donate" className="hover:text-white">Donate</a></li>
+                <li><a href="/register-ngo" className="hover:text-white">Register NGO</a></li>
+                <li><a href="/marketplace" className="hover:text-white">Marketplace</a></li>
+                <li><a href="/rewards" className="hover:text-white">Rewards</a></li>
+              </ul>
+            </div>
+            <div className="w-full md:w-1/3">
+              <h3 className="text-xl font-bold">Contact Us</h3>
+              <p className="mt-4 text-gray-400 text-sm">Email: support@relife.com</p>
+              <p className="mt-2 text-gray-400 text-sm">Phone: +1 234 567 890</p>
+              <p className="mt-2 text-gray-400 text-sm">Address: 123 Green Street, Sustainability City</p>
             </div>
           </div>
           <div className="mt-8 text-center text-gray-500 text-sm">

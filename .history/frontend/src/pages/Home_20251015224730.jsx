@@ -55,19 +55,6 @@ const Home = () => {
           />
         </div>
       </div>
-      <div className="mt-16 text-center max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold text-green-800">What Can You Donate?</h2>
-        <p className="mt-4 text-gray-700 text-lg">ReLife accepts a wide range of items to help those in need and promote sustainability. Here are some examples:</p>
-        <ul className="mt-6 text-gray-600 text-lg list-disc list-inside space-y-2">
-          <li>Clothing and footwear</li>
-          <li>Books and educational materials</li>
-          <li>Electronics and gadgets</li>
-          <li>Furniture and home decor</li>
-          <li>Non-perishable food items</li>
-          <li>Toys and games</li>
-        </ul>
-        <p className="mt-6 text-gray-700 text-lg">Your donations can make a significant impact on someone's life while reducing waste and protecting the environment.</p>
-      </div>
       <footer className="text-gray-800 py-8 mt-16">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex flex-wrap justify-between">
