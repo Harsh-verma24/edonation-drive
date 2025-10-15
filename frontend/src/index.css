@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --primary-color: #16a34a; /* Green */
+    --secondary-color: #2563eb; /* Blue */
+    --background-gradient: linear-gradient(to right, #d1fae5, #bfdbfe);
+    --text-color: #374151; /* Gray */
+  }
+}
+
+body {
+  background: var(--background-gradient);
+  color: var(--text-color);
+  font-family: 'Inter', sans-serif;
+}

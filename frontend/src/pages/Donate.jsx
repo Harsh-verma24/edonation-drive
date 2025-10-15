@@ -1,0 +1,57 @@
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import axiosInstance from '../utils/axiosInstance.js';
+
+const Donate = () => {
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = (data) => {
+    const formData = new FormData();
+    formData.append('itemType', data.itemType);
+    formData.append('quantity', data.quantity);
+    formData.append('dropLocation', data.dropLocation);
+    if (data.image[0]) {
+      formData.append('image', data.image[0]);
+    }
+
+    axiosInstance.post('/donations', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  return (
+    <div className="p-6 bg-gradient-to-r from-green-100 to-blue-100 min-h-screen">
+      <h1 className="text-4xl font-extrabold text-green-800 text-center">Donate Items</h1>
+      <p className="mt-2 text-center text-gray-700">Fill out the form below to donate your reusable items and make a difference!</p>
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-8 max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg">
+        <div className="mb-6">
+          <label className="block text-gray-800 font-medium">Item Type</label>
+          <input {...register('itemType')} placeholder="e.g., Clothes, Bottles" className="border border-gray-300 p-3 w-full rounded focus:outline-none focus:ring-2 focus:ring-green-400" />
+        </div>
+        <div className="mb-6">
+          <label className="block text-gray-800 font-medium">Quantity</label>
+          <input {...register('quantity')} placeholder="e.g., 10" type="number" className="border border-gray-300 p-3 w-full rounded focus:outline-none focus:ring-2 focus:ring-green-400" />
+        </div>
+        <div className="mb-6">
+          <label className="block text-gray-800 font-medium">Drop Location</label>
+          <input {...register('dropLocation')} placeholder="e.g., City Center" className="border border-gray-300 p-3 w-full rounded focus:outline-none focus:ring-2 focus:ring-green-400" />
+        </div>
+        <div className="mb-6">
+          <label className="block text-gray-800 font-medium">Upload Image</label>
+          <input {...register('image')} type="file" className="border border-gray-300 p-3 w-full rounded focus:outline-none focus:ring-2 focus:ring-green-400" />
+        </div>
+        <button type="submit" className="bg-green-600 text-white px-6 py-3 rounded-lg w-full hover:bg-green-700">Submit</button>
+      </form>
+    </div>
+  );
+};
+
+export default Donate;
