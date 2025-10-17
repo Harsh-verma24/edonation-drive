@@ -11,6 +11,13 @@ const Donate = () => {
     formData.append('itemType', data.itemType);
     formData.append('quantity', data.quantity);
     formData.append('dropLocation', data.dropLocation);
+    if (data.createProduct) {
+      formData.append('createProduct', 'true');
+      formData.append('productName', data.productName || data.itemType);
+      formData.append('productDescription', data.productDescription || `Donated: ${data.itemType}`);
+      formData.append('productPrice', data.productPrice || 0);
+      formData.append('productStock', data.productStock || 1);
+    }
     if (data.image && data.image[0]) {
       formData.append('image', data.image[0]);
     }
@@ -61,6 +68,22 @@ const Donate = () => {
         <div className="mb-6">
           <label className="block text-gray-800 font-medium">Upload Image</label>
           <input {...register('image')} type="file" className="border border-gray-300 p-3 w-full rounded focus:outline-none focus:ring-2 focus:ring-green-400" />
+        </div>
+        <div className="mb-4">
+          <label className="inline-flex items-center">
+            <input {...register('createProduct')} type="checkbox" className="mr-2" />
+            <span className="text-gray-800">Add this item to the marketplace</span>
+          </label>
+        </div>
+
+        {/* Additional product fields shown optionally via UI would be better, but always include to keep form simple */}
+        <div className="mb-6">
+          <label className="block text-gray-800 font-medium">Product Price (optional)</label>
+          <input {...register('productPrice')} placeholder="e.g., 12.99" type="number" step="0.01" className="border border-gray-300 p-3 w-full rounded focus:outline-none focus:ring-2 focus:ring-green-400" />
+        </div>
+        <div className="mb-6">
+          <label className="block text-gray-800 font-medium">Product Stock (optional)</label>
+          <input {...register('productStock')} placeholder="e.g., 10" type="number" className="border border-gray-300 p-3 w-full rounded focus:outline-none focus:ring-2 focus:ring-green-400" />
         </div>
         <button type="submit" className="bg-green-600 text-white px-6 py-3 rounded-lg w-full hover:bg-green-700">Submit</button>
       </form>
