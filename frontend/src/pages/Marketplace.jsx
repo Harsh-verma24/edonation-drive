@@ -48,7 +48,24 @@ const Marketplace = () => {
                 <p className="text-gray-600">{p?.description || ''}</p>
                 <div className="mt-4 flex items-center justify-between">
                   <div className="text-green-700 font-bold">{priceDisplay}</div>
-                  <button className="bg-blue-600 text-white px-4 py-2 rounded-lg">Buy Now</button>
+                  <button
+                    className="bg-blue-600 text-white px-4 py-2 rounded-lg"
+                    onClick={async () => {
+                      try {
+                        const res = await axiosInstance.post('/payments/create-checkout-session', {
+                          name: p?.name || 'Product',
+                          amount: priceNum || 0,
+                          image: p?.imageUrl || undefined,
+                        });
+                        if (res.data?.url) window.location.href = res.data.url;
+                      } catch (err) {
+                        console.error('Checkout error', err.response || err.message);
+                        alert('Unable to start checkout');
+                      }
+                    }}
+                  >
+                    Buy Now
+                  </button>
                 </div>
               </div>
             );
