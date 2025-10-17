@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Donation = require('../models/Donation');
-const upload = require('../middleware/upload');
+const { upload } = require('../middleware/upload');
 
 // Add Donation with Image Upload
 router.post('/', upload.single('image'), async (req, res) => {
