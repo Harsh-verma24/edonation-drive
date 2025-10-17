@@ -1,30 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axiosInstance from '../utils/axiosInstance.js';
 
 const Donate = () => {
   const { register, handleSubmit } = useForm();
+  const [loading, setLoading] = useState(false);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const formData = new FormData();
     formData.append('itemType', data.itemType);
     formData.append('quantity', data.quantity);
     formData.append('dropLocation', data.dropLocation);
-    if (data.image[0]) {
+    if (data.image && data.image[0]) {
       formData.append('image', data.image[0]);
     }
 
-    axiosInstance.post('/donations', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
+    try {
+      setLoading(true);
+      const response = await axiosInstance.post('/donations', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
+      console.log('Donation response:', response.data);
+      alert('Donation submitted successfully');
+    } catch (error) {
+      // Log full axios error info to help debugging
+      console.error('Axios error:', {
+        message: error.message,
+        code: error.code,
+        responseData: error.response?.data,
+        status: error.response?.status,
+        headers: error.response?.headers,
+      });
+
+      const errMsg = error.response?.data?.error || error.response?.data || error.message;
+      alert('Failed to submit donation: ' + JSON.stringify(errMsg));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
