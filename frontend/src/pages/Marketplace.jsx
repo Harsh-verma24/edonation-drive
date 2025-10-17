@@ -37,17 +37,22 @@ const Marketplace = () => {
             <div className="col-span-full text-center text-gray-600">No products available yet.</div>
           )}
 
-          {products.map((p) => (
-            <div key={p._id} className="bg-white p-4 rounded-lg shadow">
-              <img src={p.imageUrl} alt={p.name} className="w-full h-40 object-cover rounded" />
-              <h2 className="mt-4 text-lg font-bold">{p.name}</h2>
-              <p className="text-gray-600">{p.description}</p>
-              <div className="mt-4 flex items-center justify-between">
-                <div className="text-green-700 font-bold">${p.price.toFixed(2)}</div>
-                <button className="bg-blue-600 text-white px-4 py-2 rounded-lg">Buy Now</button>
+          {products.map((p) => {
+            const priceNum = Number(p?.price);
+            const priceDisplay = Number.isFinite(priceNum) ? `$${priceNum.toFixed(2)}` : '—';
+            const imgSrc = p?.imageUrl || '/Hero-1.jpg';
+            return (
+              <div key={p._id || p.id} className="bg-white p-4 rounded-lg shadow">
+                <img src={imgSrc} alt={p?.name || 'Product'} className="w-full h-40 object-cover rounded" />
+                <h2 className="mt-4 text-lg font-bold">{p?.name || 'Unnamed product'}</h2>
+                <p className="text-gray-600">{p?.description || ''}</p>
+                <div className="mt-4 flex items-center justify-between">
+                  <div className="text-green-700 font-bold">{priceDisplay}</div>
+                  <button className="bg-blue-600 text-white px-4 py-2 rounded-lg">Buy Now</button>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </div>
