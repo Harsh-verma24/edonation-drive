@@ -14,4 +14,14 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Get all products
+router.get('/', async (req, res) => {
+  try {
+    const products = await Product.find().lean();
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 module.exports = router;
