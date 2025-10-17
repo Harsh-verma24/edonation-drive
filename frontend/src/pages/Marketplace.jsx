@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axiosInstance from '../utils/axiosInstance';
 
 const Marketplace = () => {
   const [products, setProducts] = useState([]);
@@ -9,12 +10,12 @@ const Marketplace = () => {
     async function fetchProducts() {
       try {
         setLoading(true);
-        const res = await fetch('/api/products');
-        if (!res.ok) throw new Error('Failed to fetch products');
-        const data = await res.json();
-        setProducts(data);
+        const res = await axiosInstance.get('/products');
+        setProducts(res.data || []);
       } catch (err) {
-        setError(err.message);
+        console.error('Failed to fetch products:', err.response || err.message);
+        const msg = err.response?.data?.error || err.response?.data || err.message;
+        setError(String(msg));
       } finally {
         setLoading(false);
       }
