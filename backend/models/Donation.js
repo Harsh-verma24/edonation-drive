@@ -6,6 +6,7 @@ const donationSchema = new mongoose.Schema({
   itemType: { type: String, required: true },
   quantity: { type: Number, required: true },
   dropLocation: { type: String, required: true },
+  imageUrl: { type: String },
   status: { type: String, default: 'Pending' },
 });
 

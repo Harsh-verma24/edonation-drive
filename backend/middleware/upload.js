@@ -3,15 +3,8 @@ const path = require('path');
 const cloudinary = require('../config/cloudinary');
 const { Readable } = require('stream');
 
-// Local storage as fallback
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/');
-  },
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  },
-});
+// Use memory storage so files are available as buffer for direct upload to Cloudinary
+const storage = multer.memoryStorage();
 
 const fileFilter = (req, file, cb) => {
   const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
